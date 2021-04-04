@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+ 
+</head>
+<body>
+    <script>
+  
+         getData();
+    
+
+
+        async function getData(){
+        setTimeout(getData,6000);
+
+        const response = await fetch("/single");
+        var data=await response.json();
+        var len=data.length;
+        console.log(data);
+  
+       document.getElementById("temperature").textContent=data.temperature;
+        document.getElementById("humidity").textContent=data.humidity;
+        document.getElementById("timestamp").textContent=new Date(data.timestamp).toLocaleString();
+      
+       
+        
+       }
+
+
+
+   
+       function jump(){
+
+
+        window.location.href="json.html";
+       }
+
+      
+
+       
+        
+            </script>
+
+<h1> temperature&humidity from local sensor</h1>
+<p>temperature:<span id="temperature"></span><br></p>
+<p> humidity:<span id="humidity"></span><br></p>
+<p>timestamp:<span id="timestamp"></span><br></p>
+
+<button onclick="jump()"> get all the historical data </button>
+
+    
+</body>
+</html>

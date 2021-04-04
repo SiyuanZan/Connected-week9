@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+   getJson();
+
+
+      async function getJson(){ 
+
+       
+        
+ 
+      
+ 
+        const response = await fetch('/api');
+        var data=await response.json();
+        var len=data.length;
+        console.log(data);
+   
+
+  
+      
+      for(item of data){
+        const temp=document.createElement('div');
+        const hum=document.createElement('div');
+        const time=document.createElement('div');
+        
+        temp.textContent=`temperature:${item.temperature}`;
+        hum.textContent=`humidity:${item.humidity}`;
+        const timestamp=new Date(item.timestamp).toLocaleString();
+        time.textContent=`${timestamp}`;
+        temp.append(hum,time);
+        document.body.append(temp); 
+
+       }
+      
+      
+    //    setTimeout(getJson,6000);
+       
+    }
+
+    setInterval(function () {
+        window.location.reload()
+    }, 6000)
+
+
+    </script>
+    <input type=button value="go back" onclick="window.history.go(-1)">
+    
+</body>
+</html>
